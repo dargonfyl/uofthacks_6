@@ -2,11 +2,13 @@
 
 import json
 from watson_developer_cloud import VisualRecognitionV3
-
+from building.getwikipediaarticle import WikiPage
 """
 Input the url link of a picture and getWord will return the best classifier word
 for what the picture shows.
 """
+
+
 def getWord(url):
     visual_recognition = VisualRecognitionV3(
         '2018-03-19',
@@ -14,5 +16,11 @@ def getWord(url):
 
     classes_result = visual_recognition.classify(url=url).get_result()
     image = json.dumps(classes_result, indent=2)
-    return image['images'][0]['classifiers'][0]['classes'][0]['class']
+    return image.splitlines()[9].strip()[10:-2]
+    # ['images'][0]['classifiers'][0]['classes'][0]['class']
 
+
+if __name__ == "__main__":
+    word = getWord("https://images.crateandbarrel.com/is/image/Crate/RegattaRectDiningTableSHS16_16x9/?$web_zoom_furn_hero$&160329154029&wid=1008&hei=567")
+    page = WikiPage(word)
+    print(page.get_summary_full())

@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <title>Image Summarizer</title>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <h1>Image Summarizer</h1>
+
+  <h2>Please enter a url for an image</h2>
+  <form>
+    url: <input type="text" name="url"><br>
+  </form>
+  <button type="button">Submit</button>
+  <div class="descriptors"></div>
+</body>
+</html>
