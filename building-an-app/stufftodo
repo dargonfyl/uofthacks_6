@@ -1,0 +1,6 @@
+1. input picture address, get picture
+2. use watson, analyze picture to get word
+3. search wikipedia for article regarding word
+4. extract all text from wikipedia
+5. use google cloud to keep only key sentences
+6. cut sentences down and return in bullet point form
