@@ -1,5 +1,5 @@
 # Takes image url and gives the word for what it is
-
+import sys
 import json
 from watson_developer_cloud import VisualRecognitionV3
 from building.getwikipediaarticle import WikiPage
@@ -21,6 +21,5 @@ def getWord(url):
 
 
 if __name__ == "__main__":
-    word = getWord("https://images.crateandbarrel.com/is/image/Crate/RegattaRectDiningTableSHS16_16x9/?$web_zoom_furn_hero$&160329154029&wid=1008&hei=567")
+    word = getWord(sys.argv[1])
     page = WikiPage(word)
-    print(page.get_summary_full())
