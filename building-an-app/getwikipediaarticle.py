@@ -46,7 +46,7 @@ class WikiPage:
         if self.success == 1:
             return self.entry.summary.strip()
         else:
-            return "Wikipedia Article Error!"
+            raise WikiPageException("Wikipedia Article Error!")
 
     def get_url(self):
         """
@@ -55,19 +55,27 @@ class WikiPage:
         if self.success == 1:
             return self.entry.url
         else:
-            return "Wikipedia Article Error!"
+            raise WikiPageException("Wikipedia Article Error!")
 
     def get_img_url(self):
         """
-        Gets image url
+        Gets image url. Empty string if no images
         """
         if self.success == 1:
-            return self.entry.images[0]
+            return self.entry.images[0] if len(self.entry.images) > 0 else ""
         else:
-            return "Wikipedia Article Error!"
+            raise WikiPageException("Wikipedia Article Error!")
 
 
-# testing
+class WikiPageException(Exception):
+    """"uguu we made a fucky wucky"""
+    pass
+
+#
 # if __name__ == "__main__":
-#     w = WikiPage("Mercury")
+#     w = WikiPage("Fungus")
 #     print(w.get_img_url())
+#     # print(w.get_summary_full())
+#     # print(w.entry.content)
+#     # print(w.entry.section())
+#     print(w.entry.sections[0])
