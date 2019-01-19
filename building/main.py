@@ -1,6 +1,4 @@
-import datetime
-
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -9,12 +7,15 @@ app = Flask(__name__)
 def root():
     # For the sake of example, use static information to inflate the template.
     # This will be replaced with real information in later steps.
-    dummy_times = [datetime.datetime(2018, 1, 1, 10, 0, 0),
-                   datetime.datetime(2018, 1, 2, 10, 30, 0),
-                   datetime.datetime(2018, 1, 3, 11, 0, 0),
-                   ]
+    dummy = "Hello!"
 
-    return render_template('index.html', times=dummy_times)
+    return render_template('index.html', dummy=dummy)
+
+
+@app.route('/', methods=["POST"])
+def process_url():
+    image_url = request.form["url"]
+    print(image_url)
 
 
 if __name__ == '__main__':
