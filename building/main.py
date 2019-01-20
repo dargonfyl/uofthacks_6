@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from building.imagetoword import *
-from building.getwikipediaarticle import *
-from building.keysentences import *
+from .imagetoword import *
+from .getwikipediaarticle import *
+from .keysentences import *
 app = Flask(__name__)
 
 
