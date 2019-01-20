@@ -78,6 +78,18 @@ class WikiPage:
         """
         Gets image url. Empty string if no images
         """
+        imglist = self.entry.images
+        # clone = self.entry.images.copy()
+        i = 0
+        while i < len(imglist):
+            if imglist[i].endswith(".svg") or \
+                    imglist[i].endswith(".ogg") or \
+                    imglist[i].endswith(".mid") or \
+                    imglist[i].endswith(".ogv") or \
+                    imglist[i].endswith(".webm"):
+                del imglist[i]
+                i -= 1
+            i += 1
         return self.entry.images[0] if len(self.entry.images) > 0 else ""
 
     def get_img_list(self):
@@ -93,19 +105,6 @@ class WikiPageException(Exception):
 
 
 if __name__ == "__main__":
-    w = WikiPage("Table")
-    print(w.get_img_url())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    print(w.get_summary_next_paragraph())
-    # print(w.entry.content)
-    # print(w.entry.section())
-    # print(w.entry.sections)
+    w = WikiPage("forced perspective")
+    print(w.get_img_list())
+
