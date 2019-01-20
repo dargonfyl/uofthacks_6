@@ -1,4 +1,15 @@
 body {
   font-family: "helvetica", sans-serif;
-  text-align: center;
+}
+
+ul {
+    text-aligh: left;
+}
+
+#top {
+    text-align: center;
+}
+
+#full {
+    text-align: center;
 }

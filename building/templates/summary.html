@@ -1,16 +1,17 @@
 <!doctype HTML>
 <html>
 <head>
-    <title>
-        Summary of a {{name}}
-    </title>
+    <title>Summary of a {{name}}</title>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 </html>
 <body>
-    <h1>{{name}}</h1>
-    <img src="{{image}}">
-    <p>{{image}}</p>
     <div>
+        <div id="top">
+            <h1>{{name}}</h1>
+            <img src="{{image}}"/>
+            <p>{{image}}</p>
+        </div>
         <ul>
             {% for bullet in bullets %}
                 <li>{{ bullet }}</li>

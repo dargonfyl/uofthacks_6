@@ -7,8 +7,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def root():
-    # For the sake of example, use static information to inflate the template.
-    # This will be replaced with real information in later steps.
+    """
+    Creates the starting page
+    :return: the template of index
+    :rtype:
+    """
     dummy = "Hello!"
 
     return render_template('index.html', dummy=dummy)
@@ -21,12 +24,18 @@ def process_url():
     :return:
     :rtype:
     """
-    # info='"' + request.form["url"][8:] + '"'
     return redirect(url_for("summary", info=get_word(request.form["url"])), code=302)
 
 
 @app.route("/summary/<info>")
 def summary(info):
+    """
+    Creates the page for the summary of info
+    :param info: the name of the image
+    :type info: str
+    :return: the template of the summary
+    :rtype:
+    """
     bullets = None
     image = None
     try:
@@ -37,8 +46,7 @@ def summary(info):
     except WikiPageException as e:
         print(e)
 
-    return render_template("summary.html",
-                           name=info, bullets=bullets, image=image)
+    return render_template("summary.html", name=info, bullets=bullets, image=image)
 
 
 if __name__ == '__main__':
