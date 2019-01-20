@@ -1,3 +1,4 @@
 Flask==1.0.2
 google-cloud-language
 watson-developer-cloud
+wikipedia-api
