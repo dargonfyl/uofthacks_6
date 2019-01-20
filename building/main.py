@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 app = Flask(__name__)
 
@@ -11,11 +11,11 @@ def root():
 
     return render_template('index.html', dummy=dummy)
 
-
-@app.route('/', methods=["POST"])
+@app.route('/', methods=["POST", "GET"])
 def process_url():
     image_url = request.form["url"]
     print(image_url)
+    return redirect("http://www.google.com", code=302)
 
 
 if __name__ == '__main__':
