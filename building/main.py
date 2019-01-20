@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, redirect
-
+from flask import Flask, render_template, request, redirect, url_for
+from building.imagetoword import *
+from building.getwikipediaarticle import *
+from building.keysentences import *
 app = Flask(__name__)
 
 
@@ -14,9 +16,29 @@ def root():
 
 @app.route('/', methods=["POST", "GET"])
 def process_url():
-    image_url = request.form["url"]
-    print(image_url)
-    return redirect("http://www.google.com", code=302)
+    """
+    Takes the url in the
+    :return:
+    :rtype:
+    """
+    # info='"' + request.form["url"][8:] + '"'
+    return redirect(url_for("summary", info=get_word(request.form["url"])), code=302)
+
+
+@app.route("/summary/<info>")
+def summary(info):
+    bullets = None
+    image = None
+    try:
+        wiki_page = WikiPage(info)
+        bullets = keySentences(wiki_page.get_summary_full())
+        make_bullet_points(bullets)
+        image = wiki_page.get_img_url()
+    except WikiPageException as e:
+        print(e)
+
+    return render_template("summary.html",
+                           name=info, bullets=bullets, image=image)
 
 
 if __name__ == '__main__':

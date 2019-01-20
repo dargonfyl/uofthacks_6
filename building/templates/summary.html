@@ -1,0 +1,20 @@
+<!doctype HTML>
+<html>
+<head>
+    <title>
+        Summary of a {{name}}
+    </title>
+</head>
+</html>
+<body>
+    <h1>{{name}}</h1>
+    <img src="{{image}}">
+    <p>{{image}}</p>
+    <div>
+        <ul>
+            {% for bullet in bullets %}
+                <li>{{ bullet }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
