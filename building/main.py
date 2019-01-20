@@ -9,8 +9,9 @@ app = Flask(__name__)
 def root():
     """
     Creates the starting page
+
     :return: the template of index
-    :rtype:
+    :rtype:  template
     """
     dummy = "Hello!"
 
@@ -20,9 +21,10 @@ def root():
 @app.route('/', methods=["POST", "GET"])
 def process_url():
     """
-    Takes the url in the
-    :return:
-    :rtype:
+    Takes the url in the text field
+
+    :return: the summary page for the text field
+    :rtype:  redirect
     """
     return redirect(url_for("summary", info=get_word(request.form["url"])), code=302)
 
@@ -31,16 +33,17 @@ def process_url():
 def summary(info):
     """
     Creates the page for the summary of info
+
     :param info: the name of the image
-    :type info: str
-    :return: the template of the summary
-    :rtype:
+    :type info:  str
+    :return:     the template of the summary
+    :rtype:      template
     """
     bullets = None
     image = None
     try:
         wiki_page = WikiPage(info)
-        bullets = keySentences(wiki_page.get_summary_full())
+        bullets = key_sentences(wiki_page.get_summary_full())
         make_bullet_points(bullets)
         image = wiki_page.get_img_url()
     except WikiPageException as e:

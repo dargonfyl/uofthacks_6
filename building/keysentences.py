@@ -4,8 +4,7 @@ from google.cloud.language import enums
 from google.cloud.language import types
 
 
-# takes chunks of text and uses google cloud to keep only sentences with key words in them
-def keySentences(text):
+def key_sentences(text):
     """
     Takes a large chunk of text and returns a list of sentences from it that contain the
     key words of the paragraph.
@@ -97,10 +96,3 @@ def make_bullet_points(sentences):
     """
     for i in range(len(sentences)):
         sentences[i] = remove_some_text(sentences[i])
-
-
-if __name__ == '__main__':
-    sentences = keySentences(
-        "The Meiji period, or Meiji era, is a Japanese era which extended from October 23, 1868, to July 30, 1912. This period represents the first half of the Empire of Japan, during which Japanese society moved from being an isolated feudal society to a Westernised form. Fundamental changes affected its social structure, internal politics, economy, military and foreign relations. The period corresponded to the reign of Emperor Meiji and was succeeded upon the accession of Emperor Taishō by the Taishō period.")
-    make_bullet_points(sentences)
-    print(sentences)

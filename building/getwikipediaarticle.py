@@ -1,16 +1,17 @@
-# Takes word and gets the wikipedia article of it
-
-# Takes wikipedia article and extracts all important text from it
-
 import wikipedia
 
 
 class WikiPage:
     """
-    Gets wikipedia page information wiht wikipedia api
+    Gets wikipedia page information with wikipedia api
     """
 
     def __init__(self, entry_name: str):
+        """
+        Creates new WikiPage
+        :param entry_name: the name of the wikipedia entry
+        :type entry_name:  String
+        """
         self.entry_name = entry_name
         try:
             self.entry = self.parse_page(entry_name)
@@ -20,7 +21,8 @@ class WikiPage:
 
     def parse_page(self, entry_name):
         """
-        If entry is ambiguous, always choose first option
+        Parses the wikipedia page.
+        If entry is ambiguous, always choose first option.
         """
         try:
             entry = wikipedia.page(entry_name)
@@ -100,11 +102,8 @@ class WikiPage:
 
 
 class WikiPageException(Exception):
-    """"uguu we made a fucky wucky"""
+    """
+    Wikipedia page accessing error
+    uguu we made a fucky wucky
+    """
     pass
-
-
-if __name__ == "__main__":
-    w = WikiPage("forced perspective")
-    print(w.get_img_list())
-
