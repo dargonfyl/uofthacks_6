@@ -11,6 +11,7 @@ def root():
 
     return render_template('index.html', dummy=dummy)
 
+
 @app.route('/', methods=["POST", "GET"])
 def process_url():
     image_url = request.form["url"]
